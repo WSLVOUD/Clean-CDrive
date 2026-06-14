@@ -1,0 +1,12 @@
+﻿# .gitignore — 清理脚本项目
+# 构建产物
+dist/
+build/
+*.spec
+__pycache__/
+*.pyc
+# 便携版 Git 下载包（如果手动下载过）
+PortableGit.exe
+# 编辑器
+.vscode/
+.idea/
