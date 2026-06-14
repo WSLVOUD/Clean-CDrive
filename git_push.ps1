@@ -37,14 +37,11 @@ if (-not (Test-Path ".git")) {
     git commit -m "Initial commit: Clean-CDrive"
 }
 
-# Setup remote
+# Setup remote (avoid stderr noise from get-url)
 $remote = "https://github.com/$GitHubUser/$RepoName.git"
-$existing = git remote get-url origin 2>$null
-if (-not $?) {
-    git remote add origin $remote
-} else {
-    git remote set-url origin $remote
-}
+$hasOrigin = git remote | Select-String -SimpleMatch "origin" -Quiet
+if ($hasOrigin) { git remote set-url origin $remote }
+else { git remote add origin $remote }
 
 # Instructions
 Write-Host ""
